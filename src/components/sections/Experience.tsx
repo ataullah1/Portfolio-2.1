@@ -14,6 +14,8 @@ const experiences = [
       "TypeScript",
       "JavaScript",
       "TailwindCSS",
+      "NextAuth.js",
+      "Prisma",
       "PostgreSQL",
       "MongoDB",
       "Node.js",
@@ -22,6 +24,8 @@ const experiences = [
     ],
     highlights: [
       "Building scalable web applications using Next.js and TypeScript",
+      "Implementing secure authentication with NextAuth.js",
+      "Utilizing Prisma for database management and ORM",
       "Implementing AI-powered features using OpenAI API",
       "Managing database architecture with PostgreSQL and MongoDB",
       "Creating responsive and intuitive user interfaces",

@@ -20,6 +20,7 @@ const skills = {
   backend: [
     "Node.js",
     "Express.js",
+    "NextAuth.js",
     "MongoDB",
     "PostgreSQL",
     "Prisma",
@@ -30,6 +31,7 @@ const skills = {
     "AI Integration",
     "Mobile Development",
     "Responsive Design",
+    "Authentication",
   ],
 };
 
