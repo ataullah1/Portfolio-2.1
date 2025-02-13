@@ -61,10 +61,10 @@ export default function Navigation() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
-          {/* Logo */}
+          {/* Updated Logo */}
           <motion.a
             href="#home"
-            className="text-xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
+            className="relative group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => {
@@ -72,7 +72,10 @@ export default function Navigation() {
               scrollToSection("#home");
             }}
           >
-            JD
+            <span className="text-2xl font-black bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-display tracking-tight">
+              AT
+            </span>
+            <div className="absolute -inset-x-2 -inset-y-1 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-lg blur-lg group-hover:blur-xl transition-all opacity-0 group-hover:opacity-100" />
           </motion.a>
 
           {/* Navigation Links */}
