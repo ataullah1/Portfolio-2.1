@@ -1,8 +1,12 @@
 "use client";
 
-import { motion, useScroll } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Project {
   title: string;
@@ -19,7 +23,7 @@ const projects = [
     description:
       "A real-time chat application with AI integration for smart responses and content generation. Built with Next.js and OpenAI API.",
     image:
-      "https://res.cloudinary.com/mdataullah/image/upload/v1739435780/projects/chat-app.png",
+      "https://res.cloudinary.com/mdataullah/image/upload/v1718852905/img_1-min_zopmih.png",
     tech: ["Next.js", "TypeScript", "OpenAI", "TailwindCSS", "Prisma"],
     link: "https://project1.demo",
     github: "https://github.com/yourusername/project1",
@@ -29,7 +33,7 @@ const projects = [
     description:
       "Full-featured admin dashboard for e-commerce platforms with real-time analytics, order management, and inventory tracking.",
     image:
-      "https://res.cloudinary.com/mdataullah/image/upload/v1739435780/projects/dashboard.png",
+      "https://res.cloudinary.com/mdataullah/image/upload/v1718852905/img_1-min_zopmih.png",
     tech: ["React", "Node.js", "MongoDB", "Express", "Chart.js"],
     link: "https://project2.demo",
     github: "https://github.com/yourusername/project2",
@@ -39,7 +43,7 @@ const projects = [
     description:
       "A tool that generates professional portfolio websites using AI to create personalized content and layouts.",
     image:
-      "https://res.cloudinary.com/mdataullah/image/upload/v1739435780/projects/portfolio.png",
+      "https://res.cloudinary.com/mdataullah/image/upload/v1718852905/img_1-min_zopmih.png",
     tech: ["Next.js", "Framer Motion", "TailwindCSS", "AI Integration"],
     link: "https://project3.demo",
     github: "https://github.com/yourusername/project3",
@@ -49,7 +53,7 @@ const projects = [
     description:
       "Collaborative task management platform with real-time updates, team chat, and project analytics.",
     image:
-      "https://res.cloudinary.com/mdataullah/image/upload/v1739435780/projects/task-app.png",
+      "https://res.cloudinary.com/mdataullah/image/upload/v1718852905/img_1-min_zopmih.png",
     tech: ["React", "Firebase", "TailwindCSS", "TypeScript"],
     link: "https://project4.demo",
     github: "https://github.com/yourusername/project4",
@@ -58,10 +62,29 @@ const projects = [
 
 export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  const lineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const line = lineRef.current;
+    const container = containerRef.current;
+
+    if (!line || !container) return;
+
+    gsap.to(line, {
+      height: "100%",
+      scrollTrigger: {
+        trigger: container,
+        start: "top center",
+        end: "bottom center",
+        scrub: true,
+      },
+    });
+
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
     <section
@@ -79,13 +102,13 @@ export default function Projects() {
       <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-pulse delay-1000" />
 
       {/* Progress Line */}
-      <motion.div
-        className="fixed left-10 top-1/2 w-1 h-96 -translate-y-1/2 bg-foreground/10 rounded-full hidden lg:block"
-        style={{ scaleY: scrollYProgress }}
-      >
-        <div className="absolute top-0 left-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1.5 bg-primary rounded-full" />
-        <div className="absolute bottom-0 left-1/2 w-3 h-3 -translate-x-1/2 translate-y-1.5 bg-accent rounded-full" />
-      </motion.div>
+      <div className="fixed left-10 top-1/2 w-1 h-96 -translate-y-1/2 bg-foreground/10 rounded-full hidden lg:block">
+        <div
+          ref={lineRef}
+          className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-secondary to-accent rounded-full origin-top"
+          style={{ height: "0%" }}
+        />
+      </div>
 
       <div className="container mx-auto">
         <div className="relative max-w-6xl mx-auto z-10">
