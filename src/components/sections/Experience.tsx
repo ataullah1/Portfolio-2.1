@@ -107,6 +107,7 @@ export default function Experience() {
                     <span className="px-3 py-1 text-sm font-medium bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full backdrop-blur-sm border border-foreground/10">
                       {experience.period}
                     </span>
+
                     <p className="text-sm text-foreground/60 mt-2">
                       {experience.type}
                     </p>
